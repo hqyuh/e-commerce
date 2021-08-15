@@ -24,6 +24,8 @@ public class Role {
     @Column(length = 150, nullable = false)
     private String description; // mô tả
 
+    // @ManyToMany(mappedBy = "roles")
+    // private Set<User> users = new HashSet<>();
 
     public Role(Integer id) {
         this.id = id;
@@ -49,8 +51,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" +
-                "name='" + name + '\'' +
-                '}';
+        return this.name;
     }
 }
