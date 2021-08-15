@@ -10,7 +10,9 @@
     </parent>
 
     <artifactId>ShopmeBackEnd</artifactId>
+
     <name>ShopmeBackEnd</name>
+
     <description>Shopme Admin project</description>
 
     <properties>
