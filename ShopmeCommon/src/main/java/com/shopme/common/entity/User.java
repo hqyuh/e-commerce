@@ -37,8 +37,11 @@ public class User {
 
     @ManyToMany
     @JoinTable(
+            // table trung gian
             name = "users_roles",
+            // table hiện tại
             joinColumns = @JoinColumn(name = "user_id"),
+            // column mapping với table hiện tại
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
