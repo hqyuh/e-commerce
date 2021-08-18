@@ -61,7 +61,8 @@
         <form th:action="@{/users/save}"
               method="post"
               style="max-width: 700px; margin: 0 auto"
-              th:object="${user}">
+              th:object="${user}" 
+              onsubmit="return checkEmailUnique(this)">
         <div class="border border-secondary rounded p-3">
 
             <!-- Email -->
@@ -158,6 +159,27 @@
                 window.location = "[[@{/users}]]"
             });
         });
+
+        // ajax
+        function checkEmailUnique(form) {
+
+            let url = "[[@{/users/check_email}]]";
+            let userEmail = $("#email").val();
+            let csrfValue = $("input[name='_csrf']").val();
+
+            let params = {email: userEmail, _csrf: csrfValue};
+
+            // $.post(url, data, function())
+            $.post(url, params, function (response) {
+                if(response == "OK"){
+                    form.submit();
+                }else if(response == "Duplicated"){
+                    alert("There is another user having the email " + userEmail);
+                }
+            })
+            return false;
+        }
+
     </script>
 
 </body>

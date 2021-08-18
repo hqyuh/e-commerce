@@ -3,6 +3,7 @@ package com.shopme.admin.user;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +13,16 @@ public class UserService {
 
     private final UserRepository userRepo;
     private final RoleRepository roleRepo;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(UserRepository userRepo,
-                       RoleRepository roleRepo) {
+                       RoleRepository roleRepo,
+                       PasswordEncoder passwordEncoder) {
 
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -32,7 +36,22 @@ public class UserService {
 
     // save user
     public void save(User user){
+        encodePassword(user);
         userRepo.save(user);
     }
+
+    // hash password
+    private void encodePassword(User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+    }
+
+    // check duplicate email
+    public boolean isEmailUnique(String email){
+        User userByEmail = userRepo.getUserByEmail(email);
+        return userByEmail == null;
+    }
+
+
 
 }

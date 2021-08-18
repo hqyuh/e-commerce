@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- responsive on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1">
 
-    <title>Shopme Admin Control Panel</title>
+    <title>Home - Shopme Admin</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -62,8 +62,9 @@
 
         <!--  -->
         <div th:if="${message != null}" class="alert alert-success text-center">
-            [[${message}}]]
+            [[${message}]]
         </div>
+
 
         <div>
             <table class="table table-bordered table-striped table-hover table-responsive-xl">
