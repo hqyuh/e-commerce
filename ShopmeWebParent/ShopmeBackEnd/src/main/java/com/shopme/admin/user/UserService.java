@@ -3,7 +3,6 @@ package com.shopme.admin.user;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +37,21 @@ public class UserService {
 
     // save user
     public void save(User user){
-        encodePassword(user);
+
+        boolean isUpdatingUser = (user.getId() != null);
+
+        if(isUpdatingUser){
+            User existingUser = userRepo.findById(user.getId()).get();
+
+            if(user.getPassword().isEmpty()){
+                user.setPassword(existingUser.getPassword());
+            }else {
+                encodePassword(user);
+            }
+        }else {
+            encodePassword(user);
+        }
+
         userRepo.save(user);
     }
 
@@ -49,9 +62,26 @@ public class UserService {
     }
 
     // check duplicate email
-    public boolean isEmailUnique(String email){
+    public boolean isEmailUnique(Integer id, String email){
+
         User userByEmail = userRepo.getUserByEmail(email);
-        return userByEmail == null;
+
+        // if email not in database
+        if(userByEmail == null) return true;
+
+        boolean isCreatingNew = (id == null);
+
+        if(isCreatingNew){
+            // if email exists
+            if(userByEmail != null)
+                return false;
+        }else {
+            // if id exists
+            if(userByEmail.getId() != id)
+                return false;
+        }
+
+        return true;
     }
 
     // get user by ID
