@@ -187,7 +187,7 @@
             let url = "[[@{/users/check_email}]]";
             let userEmail = $("#email").val();
             let csrfValue = $("input[name='_csrf']").val();
-
+            alert(userEmail + " " + csrfValue);
             let params = {email: userEmail, _csrf: csrfValue};
 
             // $.post(url, data, function())
