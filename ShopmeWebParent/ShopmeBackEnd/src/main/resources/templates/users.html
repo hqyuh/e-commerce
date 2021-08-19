@@ -102,8 +102,10 @@
                         </td>
 
                         <td>
-                            <a class="fas fa-edit fa-2x icon-green" href=""></a>
+                            <!-- edit -->
+                            <a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}"></a>
                             &nbsp;
+                            <!-- delete -->
                             <a class="fas fa-trash fa-2x icon-dark" href=""></a>
                         </td>
                     </tr>

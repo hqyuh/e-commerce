@@ -5,7 +5,7 @@
     <!-- responsive on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1">
 
-    <title>Create New User</title>
+    <title>[[${pageTitle}]]</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -56,7 +56,7 @@
         </div>
 
         <div>
-            <h2>Manage Users | Create New User</h2>
+            <h2>Manage Users | [[${pageTitle}]]</h2>
         </div>
         <form th:action="@{/users/save}"
               method="post"
@@ -187,7 +187,7 @@
             let url = "[[@{/users/check_email}]]";
             let userEmail = $("#email").val();
             let csrfValue = $("input[name='_csrf']").val();
-            alert(userEmail + " " + csrfValue);
+
             let params = {email: userEmail, _csrf: csrfValue};
 
             // $.post(url, data, function())
