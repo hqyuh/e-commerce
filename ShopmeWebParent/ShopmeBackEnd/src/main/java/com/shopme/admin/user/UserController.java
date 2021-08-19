@@ -67,7 +67,11 @@ public class UserController {
         try {
 
             User user = service.get(id);
+            List<Role> listRoles = service.listRoles();
+
+
             model.addAttribute("user", user);
+            model.addAttribute("listRoles", listRoles);
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             return "user_form";
 
