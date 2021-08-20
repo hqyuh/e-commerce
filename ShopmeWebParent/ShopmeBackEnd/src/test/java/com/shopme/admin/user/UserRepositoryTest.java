@@ -109,4 +109,16 @@ class UserRepositoryTest {
 
     }
 
+    @Test
+    public void testCouldById(){
+
+        Integer id = 1;
+
+        Long countId = repo.countById(id);
+        System.out.println(countId);
+        assertThat(countId).isNotNull().isGreaterThan(0);
+
+    }
+
+
 }
