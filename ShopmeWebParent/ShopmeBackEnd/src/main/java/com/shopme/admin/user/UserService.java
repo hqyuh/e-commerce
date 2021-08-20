@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Transactional
 public class UserService {
 
     private final UserRepository userRepo;
@@ -73,15 +75,15 @@ public class UserService {
 
         if(isCreatingNew){
             // if email exists
-            if(userByEmail != null)
+            if(userByEmail != null) // 1
                 return false;
         }else {
             // if id exists
-            if(userByEmail.getId() != id)
+            if(userByEmail.getId() != id) // 2
                 return false;
         }
 
-        return true;
+        return true; // 3
     }
 
     // get user by ID
@@ -105,8 +107,10 @@ public class UserService {
 
     }
 
-
-
+    // enabled
+    public void updateUserEnabledStatus(Integer id, boolean enabled){
+        userRepo.updateEnabledStatus(id, enabled);
+    }
 
 
 }

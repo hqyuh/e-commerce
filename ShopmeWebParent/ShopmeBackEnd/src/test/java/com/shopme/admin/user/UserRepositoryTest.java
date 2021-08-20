@@ -120,5 +120,17 @@ class UserRepositoryTest {
 
     }
 
+    @Test
+    public void testDisableUser(){
+        Integer id = 21;
+        repo.updateEnabledStatus(id, false);
+    }
+
+    @Test
+    public void testEnableUser(){
+        Integer id = 21;
+        repo.updateEnabledStatus(id, true);
+    }
+
 
 }
