@@ -75,15 +75,15 @@ public class UserService {
 
         if(isCreatingNew){
             // if email exists
-            if(userByEmail != null) // 1
+            if(userByEmail != null)
                 return false;
         }else {
             // if id exists
-            if(userByEmail.getId() != id) // 2
+            if(userByEmail.getId() != id)
                 return false;
         }
 
-        return true; // 3
+        return true;
     }
 
     // get user by ID
