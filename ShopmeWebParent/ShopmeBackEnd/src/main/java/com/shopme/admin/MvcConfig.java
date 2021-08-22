@@ -13,9 +13,13 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
+        // map the path of the request (URI) to
+        // the absolute path of the directory on the server.
+
         String dirName = "user-photos";
         Path userPhotosDir = Paths.get(dirName);
 
+        // getAbsolutePath(): get the original link of the project
         String userPhotosPath = userPhotosDir.toFile().getAbsolutePath();
 
         registry.addResourceHandler("/" + dirName + "/**")
