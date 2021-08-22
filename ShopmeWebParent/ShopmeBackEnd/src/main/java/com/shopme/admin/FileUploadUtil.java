@@ -27,10 +27,14 @@ public class FileUploadUtil {
         try (InputStream inputStream = multipartFile.getInputStream()){
             // call resolve() to create resolved Path
             // path: đường dẫn
+
+            // filePath = uploadPath\fileName
             Path filePath = uploadPath.resolve(fileName);
 
+
             // REPLACE_EXISTING – replace a file if it exists
-            // Files.copy(source, target, ...)
+            // Files.copy(inputStream, Path, CopyOptions)
+            // used to copy bytes from inputStream to file(filePath)
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         }catch (IOException e){
             throw new IOException("Could not save file: " + fileName, e);

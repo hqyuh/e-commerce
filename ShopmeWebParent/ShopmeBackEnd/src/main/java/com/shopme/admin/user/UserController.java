@@ -57,8 +57,7 @@ public class UserController {
                            RedirectAttributes redirectAttributes,
                            @RequestParam("image") MultipartFile multipartFile) throws IOException {
         // System.out.println(user);
-
-        System.out.println(multipartFile.getOriginalFilename()); // photo name
+        // System.out.println(multipartFile.getOriginalFilename()); // photo name
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         // System.out.println(fileName);
