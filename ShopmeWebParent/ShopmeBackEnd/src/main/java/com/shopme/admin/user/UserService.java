@@ -38,7 +38,7 @@ public class UserService {
     }
 
     // save user
-    public void save(User user){
+    public User save(User user){
 
         boolean isUpdatingUser = (user.getId() != null);
 
@@ -54,7 +54,7 @@ public class UserService {
             encodePassword(user);
         }
 
-        userRepo.save(user);
+        return userRepo.save(user);
     }
 
     // hash password
