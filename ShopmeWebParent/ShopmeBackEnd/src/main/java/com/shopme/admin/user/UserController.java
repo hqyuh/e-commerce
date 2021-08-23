@@ -49,12 +49,16 @@ public class UserController {
 
         long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
         long endCount = startCount + UserService.USERS_PER_PAGE - 1;
+        if(endCount > page.getTotalElements()){
+            endCount = page.getTotalElements();
+        }
 
         model.addAttribute("listUsers", listUsers);
         //
         model.addAttribute("currentPage", pageNum);
+        // total number of pages
         model.addAttribute("totalPages", page.getTotalPages());
-        //
+        // total number of elements
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
