@@ -35,7 +35,7 @@ public class UserController {
         // model.addAttribute("listUsers", listUsers);
         // return "users";
 
-        return listByPage(1, model, "firstName", "asc");
+        return listByPage(1, model, "id", "asc");
 
     }
 
@@ -46,7 +46,7 @@ public class UserController {
                              String sortField,
                              String sortDir){
 
-        System.out.println(sortField + " " + sortDir);
+
 
         Page<User> page = service.listByPage(pageNum, sortField, sortDir);
         List<User> listUsers = page.getContent();
@@ -57,6 +57,8 @@ public class UserController {
             endCount = page.getTotalElements();
         }
 
+        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
         model.addAttribute("listUsers", listUsers);
         //
         model.addAttribute("currentPage", pageNum);
@@ -66,6 +68,11 @@ public class UserController {
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
+
+        // sort
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", reverseSortDir);
 
         return "users";
     }

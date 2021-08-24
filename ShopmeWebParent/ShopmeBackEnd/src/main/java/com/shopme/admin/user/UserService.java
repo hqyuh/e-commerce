@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 @Transactional
 public class UserService {
 
-    public static final int USERS_PER_PAGE = 4;
+    public static final int USERS_PER_PAGE = 3;
 
     private final UserRepository userRepo;
     private final RoleRepository roleRepo;
