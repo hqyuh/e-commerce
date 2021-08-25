@@ -63,9 +63,17 @@
         <div>
             <h2>Manage Users</h2>
             <a th:href="@{/users/new}">Create New User</a>
-            &nbsp; | &nbsp;
-            <a th:href="@{/users/export/csv}">Export to CSV</a>
-
+            |
+            <a th:href="@{/users/export/csv}"
+               class="fas fa-file-csv fa-2x icon-silver"
+               title="Export to CSV"></a>
+            |
+            <a th:href="@{/users/export/excel}"
+               class="fas fa-file-excel fa-2x icon-silver"
+               title="Export to CSV"></a>
+            |
+            <a href="#" class="fas fa-file-pdf fa-2x icon-silver"
+               title="Export to CSV"></a>
         </div>
 
         <!--  -->

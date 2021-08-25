@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class UserCsvExportUser extends AbstractExporter{
+public class UserCsvExporter extends AbstractExporter{
 
     public void export(List<User> listUsers,
                        HttpServletResponse response) throws IOException {
