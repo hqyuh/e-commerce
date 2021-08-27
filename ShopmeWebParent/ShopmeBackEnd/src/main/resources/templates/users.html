@@ -62,17 +62,19 @@
 
         <div>
             <h2>Manage Users</h2>
-            <a th:href="@{/users/new}">Create New User</a>
+            <a th:href="@{/users/new}"
+               class="fas fa-user-plus fa-2x icon-dark"></a>
             |
             <a th:href="@{/users/export/csv}"
-               class="fas fa-file-csv fa-2x icon-silver"
+               class="fas fa-file-csv fa-2x icon-dark"
                title="Export to CSV"></a>
             |
             <a th:href="@{/users/export/excel}"
-               class="fas fa-file-excel fa-2x icon-silver"
+               class="fas fa-file-excel fa-2x icon-dark"
                title="Export to CSV"></a>
             |
-            <a th:href="@{/users/export/pdf}" class="fas fa-file-pdf fa-2x icon-silver"
+            <a th:href="@{/users/export/pdf}"
+               class="fas fa-file-pdf fa-2x icon-dark"
                title="Export to CSV"></a>
         </div>
 
@@ -89,12 +91,19 @@
             Filter: &nbsp;
             <input type="search" name="keyword" th:value="${keyword}" class="form-control" required>
             &nbsp; &nbsp;
-            <input type="submit" value="Search" class="btn btn-primary">
+            <button type="submit" value="Search"
+                    class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
             &nbsp;
-            <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+            <button type="button"
+                    class="btn btn-secondary"
+                    onclick="clearFilter()">
+                <i class="fas fa-eraser"></i>
+            </button>
         </form>
 
-        <div>
+        <div class="full-details">
             <table class="table table-bordered table-striped table-hover table-responsive-xl">
                 <thead class="thead-dark">
                     <tr>
@@ -110,7 +119,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="user : ${listUsers}">
-                        <td>[[${user.id}]]</td>
+                        <td >[[${user.id}]]</td>
                         <td>
                             <span th:if="${user.photos == null}"
                                   class="fas fa-portrait fa-6x icon-silver"></span>
@@ -118,12 +127,12 @@
                                  th:src="@{${user.photosImagePath}}"
                                  alt="" style="width: 80px">
                         </td>
-                        <td>[[${user.email}]]</td>
-                        <td>[[${user.firstName}]]</td>
-                        <td>[[${user.lastName}]]</td>
-                        <td>[[${user.roles}]]</td>
+                        <td >[[${user.email}]]</td>
+                        <td >[[${user.firstName}]]</td>
+                        <td >[[${user.lastName}]]</td>
+                        <td >[[${user.roles}]]</td>
 
-                        <td>
+                        <td class="hideable-column">
                             <a th:if="${user.enabled == true}"
                                class="fas fa-check-circle fa-2x icon-green"
                                th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
@@ -153,6 +162,48 @@
             </table>
         </div>
 
+        <!-- mobile -->
+        <div class="less-details">
+            <div th:each="user : ${listUsers}" class="row m-1">
+                <div class="col-4">
+                    <span th:if="${user.photos == null}"
+                          class="fas fa-portrait fa-6x icon-silver"></span>
+                    <img th:if="${user.photos != null}"
+                         th:src="@{${user.photosImagePath}}"
+                         alt="" style="width: 80px">
+                </div>
+                <div class="col-8">
+                    <div>[[${user.fullName}]]</div>
+                    <div>[[${user.roles}]]</div>
+                    <div class="mt-2">
+                        <!-- enabled -->
+                        <a th:if="${user.enabled == true}"
+                           class="fas fa-check-circle fa-2x icon-green"
+                           th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+                           title="Disable this user"></a>
+                        <a th:if="${user.enabled == false}"
+                           class="fas fa-circle fa-2x icon-dark"
+                           th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+                           title="Enabled this user"></a>
+                        &nbsp;
+                        <!-- edit -->
+                        <a class="fas fa-edit fa-2x icon-green"
+                           th:href="@{'/users/edit/' + ${user.id}}"
+                           title="Edit this user">
+                        </a>
+                        &nbsp;
+                        <!-- delete -->
+                        <a class="fas fa-trash fa-2x icon-dark link-delete"
+                           th:href="@{'/users/delete/' + ${user.id}}"
+                           title="Delete this user"
+                           th:userId="*{user.id}">
+                        </a>
+                    </div>
+                </div>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+
         <!-- page -->
         <div class="text-center m-1" th:if="${totalItems > 0}">
             <span>Showing users # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
@@ -164,7 +215,7 @@
         <!-- page -->
         <div th:if="${totalPages > 1}">
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center flex-wrap">
 
                     <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
                         <a th:replace="fragments :: page_link(1, 'First')"></a>
