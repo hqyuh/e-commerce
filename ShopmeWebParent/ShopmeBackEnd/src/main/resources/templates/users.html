@@ -107,19 +107,23 @@
             <table class="table table-bordered table-striped table-hover table-responsive-xl">
                 <thead class="thead-dark">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'User ID') "></th>
+                        <th class="hideable-column">
+                            <th th:replace="fragments :: column_link('id', 'User ID', 'tag') "></th>
+                        </th>
                         <th>Photos</th>
-                        <th th:replace="fragments :: column_link('email', 'Email')"></th>
-                        <th th:replace="fragments :: column_link('firstName', 'First Name')"></th>
-                        <th th:replace="fragments :: column_link('lastName', 'Last Name')"></th>
+                        <th>
+                            <th th:replace="fragments :: column_link('email', 'Email', 'tag')"></th>
+                        </th>
+                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"></th>
+                        <th th:replace="fragments :: column_link('lastName', 'Last Name',  'none')"></th>
                         <th>Role</th>
-                        <th th:replace="fragments :: column_link('enabled', 'Enabled')"></th>
+                        <th th:replace="fragments :: column_link('enabled', 'Enabled',  'none')"></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="user : ${listUsers}">
-                        <td >[[${user.id}]]</td>
+                        <td class="hideable-column">[[${user.id}]]</td>
                         <td>
                             <span th:if="${user.photos == null}"
                                   class="fas fa-portrait fa-6x icon-silver"></span>
@@ -127,10 +131,10 @@
                                  th:src="@{${user.photosImagePath}}"
                                  alt="" style="width: 80px">
                         </td>
-                        <td >[[${user.email}]]</td>
-                        <td >[[${user.firstName}]]</td>
-                        <td >[[${user.lastName}]]</td>
-                        <td >[[${user.roles}]]</td>
+                        <td>[[${user.email}]]</td>
+                        <td>[[${user.firstName}]]</td>
+                        <td>[[${user.lastName}]]</td>
+                        <td>[[${user.roles}]]</td>
 
                         <td>
                             <a th:if="${user.enabled == true}"
