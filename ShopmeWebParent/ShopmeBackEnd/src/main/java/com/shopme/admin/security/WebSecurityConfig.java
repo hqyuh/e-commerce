@@ -23,9 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .anyRequest()
                 //
+                .anyRequest()
                 .authenticated()
+                // All other requests need to be authenticated to be accessed
                 .and()
                 .formLogin()
                     .loginPage("/login")
