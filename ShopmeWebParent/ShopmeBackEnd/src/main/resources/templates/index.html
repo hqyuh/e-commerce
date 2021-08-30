@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- responsive on mobile -->
@@ -8,6 +9,10 @@
     <title>Shopme Admin Control Panel</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
@@ -49,18 +54,24 @@
                             <a class="nav-link" th:href="@{/menus}">Menus</a></li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/settings}">Settings</a></li>
+                        <li>
+                            <span class="fas fa-user fa-2x icon-silver"></span></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                               data-toggle="dropdown"
+                               sec:authentication="principal.fullName"></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="">Logout</a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
-
             </nav>
         </div>
 
         <div>
             <h1 class="text-center">Shopme Control Panel</h1>
-        </div>
-
-        <div class="text-center">
-            <p>Shopme Control Panel - Copyright &copy; Shopme</p>
         </div>
 
     </div>
