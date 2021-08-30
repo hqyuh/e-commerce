@@ -1,0 +1,8 @@
+
++ getAuthorities(): returns a list of user permissions
++ getPassword(): returns the password used during authentication
++ getUsername(): returns the username used during authentication
++ isAccountNonExpired(): returns true if the user's account has not expired
++ isAccountNonLocked(): returns true if the user is not locked
++ isCredentialsNonExpired(): returns true if the user's authentication (password) has not expired
++ isEnabled(): returns true if the user is already activated

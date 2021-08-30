@@ -35,7 +35,8 @@ public class User {
     private String photos;
     private boolean enabled;
 
-    @ManyToMany
+    // select object from database then it will not get related objects
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             // table trung gian
             name = "users_roles",
