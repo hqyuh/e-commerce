@@ -59,7 +59,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .logout()
-                    .permitAll();
+                    .permitAll()
+                .and()
+                    .rememberMe()
+                        // reload server still keep cookies
+                        .key("AbcDe1f2g3H4i5j6k7l8m9nOpq0rs")
+                        // 1 week
+                        .tokenValiditySeconds(7 * 24 * 60 * 60);
     }
 
     @Override
