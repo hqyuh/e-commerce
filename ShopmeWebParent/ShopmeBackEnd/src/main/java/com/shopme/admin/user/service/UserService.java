@@ -1,5 +1,8 @@
-package com.shopme.admin.user;
+package com.shopme.admin.user.service;
 
+import com.shopme.admin.user.repository.RoleRepository;
+import com.shopme.admin.user.exception.UserNotFoundException;
+import com.shopme.admin.user.repository.UserRepository;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Transactional

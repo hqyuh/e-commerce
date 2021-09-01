@@ -1,6 +1,6 @@
 package com.shopme.admin.security;
 
-import com.shopme.admin.user.UserRepository;
+import com.shopme.admin.user.repository.UserRepository;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
