@@ -39,6 +39,9 @@ public class UserService {
         return (List<User>) userRepo.findAll();
     }
 
+    public User getByEmail(String email){
+        return userRepo.getUserByEmail(email);
+    }
 
     public Page<User> listByPage(int pageNum,
                                  String sortField,

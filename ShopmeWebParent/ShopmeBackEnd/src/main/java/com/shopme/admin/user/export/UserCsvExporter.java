@@ -1,5 +1,6 @@
-package com.shopme.admin.user;
+package com.shopme.admin.user.export;
 
+import com.shopme.admin.user.AbstractExporter;
 import com.shopme.common.entity.User;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
@@ -12,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class UserCsvExporter extends AbstractExporter{
+public class UserCsvExporter extends AbstractExporter {
 
     public void export(List<User> listUsers,
                        HttpServletResponse response) throws IOException {
