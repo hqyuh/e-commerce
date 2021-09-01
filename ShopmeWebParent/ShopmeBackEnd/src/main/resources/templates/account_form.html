@@ -52,11 +52,24 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Password: </label>
                 <div class="col-sm-8">
-                    <input th:if="${user.id == null}" type="password" class="form-control"
-                           th:field="*{password}" required minlength="2" maxlength="20">
+                    <input type="password"
+                           th:field="*{password}"
+                           placeholder="Leave blank if you don't want to change password"
+                           class="form-control"
+                           minlength="8" maxlength="20"
+                           oninput="checkPasswordMatch(document.getElementById('confirmPassword'))">
+                </div>
+            </div>
 
-                    <input th:if="${user.id != null}" type="password" class="form-control"
-                           th:field="*{password}" minlength="2" maxlength="20">
+            <!-- Confirm Password -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Confirm Password: </label>
+                <div class="col-sm-8">
+                    <input type="password"
+                           id="confirmPassword"
+                           class="form-control"
+                           minlength="8" maxlength="20"
+                           oninput="checkPasswordMatch(this)">
                 </div>
             </div>
 
@@ -146,7 +159,6 @@
                     showImageThumbnail(this);
                 }
 
-
             });
 
         });
@@ -166,6 +178,15 @@
 
             // read binary data and encode it as base64 data url
             reader.readAsDataURL(file);
+        }
+
+        // confirm password
+        function checkPasswordMatch(confirmPassword) {
+            if(confirmPassword.value != $("#password").val()){
+                confirmPassword.setCustomValidity("Passwords do not match!");
+            }else {
+                confirmPassword.setCustomValidity("");
+            }
         }
 
     </script>
