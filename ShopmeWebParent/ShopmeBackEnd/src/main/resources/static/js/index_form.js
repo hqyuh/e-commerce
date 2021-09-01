@@ -10,7 +10,7 @@ $(document).ready(() => {
 
         if(fileSize > 1048576){
             this.setCustomValidity("You must choose an image less than 1MB");
-            // hiện setCustomValidity lên
+            // show setCustomValidity
             this.reportValidity();
         }else {
             showImageThumbnail(this);
@@ -28,7 +28,7 @@ const showImageThumbnail = (fileInput) => {
     let file = fileInput.files[0];
 
     let reader = new FileReader();
-    // onload: sau khi đã được load thành công
+    // onload: after it has been successfully loaded
     reader.onload = function (e) {
         $("#thumbnail").attr("src", e.target.result);
     };
