@@ -6,3 +6,16 @@
 + isAccountNonLocked(): returns true if the user is not locked
 + isCredentialsNonExpired(): returns true if the user's authentication (password) has not expired
 + isEnabled(): returns true if the user is already activated
+
+
+// Spring Security's Authorization APIs
+
++ hasRole('Admin')
++ hasAnyRole('Admin', 'Editor')
+
++ hasAuthority('Admin')
++ hasAnyAuthority('Admin', 'Editor')
+
+* Difference between hasRole() and hasAuthority()
+    + hasRole(): insert ROLE_ before role name automatically
+    + hasAuthority(): no insertion - use the role name as it is
