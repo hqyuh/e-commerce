@@ -76,7 +76,6 @@ class CategoryRepositoryTest {
         }
     }
 
-    @Test
     public void printChildren(Category parent, int subLevel){
 
         int newSubLevel = subLevel + 1;
