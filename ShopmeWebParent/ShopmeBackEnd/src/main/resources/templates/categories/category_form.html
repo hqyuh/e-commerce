@@ -10,6 +10,7 @@
         <div>
             <h2>Manage Categories | [[${pageTitle}]]</h2>
         </div>
+
         <form th:action="@{/category/save}"
               method="post"
               style="max-width: 500px; margin: 0 auto"
@@ -62,7 +63,7 @@
                     <input type="file"
                            class="mb-2"
                            id="fileImage"
-                           name="image"
+                           name="fileImage"
                            accept="image/png, image/jpeg">
                     <div class="mt-2">
                         <img id="thumbnail"

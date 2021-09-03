@@ -17,6 +17,11 @@
         </a>
     </div>
 
+    <!--  -->
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+
     <div>
         <!-- search -->
         <form action="" class="form-inline m-3">
