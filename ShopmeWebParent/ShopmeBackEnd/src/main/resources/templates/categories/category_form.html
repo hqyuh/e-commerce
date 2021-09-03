@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments :: page_head(${pageTitle})">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div th:replace="navigation :: menu"></div>
+
+        <div>
+            <h2>Manage Categories | [[${pageTitle}]]</h2>
+        </div>
+        <form th:action="@{/category/save}"
+              method="post"
+              style="max-width: 500px; margin: 0 auto"
+              th:object="${category}"
+              enctype="multipart/form-data">
+
+            <input type="hidden" th:field="*{id}">
+
+        <div class="border border-secondary rounded p-3">
+
+            <!-- Email -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Category Name: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"
+                           th:field="*{name}" required minlength="3" maxlength="128">
+                </div>
+            </div>
+
+            <!-- First Name -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Alias: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control"
+                           th:field="*{alias}" required minlength="3" maxlength="64">
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Parent Category: </label>
+                <div class="col-sm-8">
+                    <select class="form-control" th:field="*{parent}">
+                        <option value="0">[No parent]</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Image: </label>
+                <div class="col-sm-8">
+                    <input type="hidden"
+                           th:field="*{image}">
+                    <input type="file"
+                           class="mb-2"
+                           id="fileImage"
+                           name="image"
+                           accept="image/png, image/jpeg">
+                    <div class="mt-2">
+                        <img id="thumbnail"
+                             th:src="@{/images/image-thumbnail.png}"
+                             alt="Image preview">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enabled -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Enabled: </label>
+                <div class="col-sm-8">
+                    <input type="checkbox"
+                           th:field="*{enabled}"
+                           style="margin-left: 8px">
+                </div>
+            </div>
+
+            
+            <div class="text-center">
+                <input class="btn btn-primary"
+                       type="submit"
+                       value="Save">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Cancel"
+                       id="buttonCancel">
+            </div>
+            
+        </div>
+        </form>
+
+        <!--  -->
+        <div class="modal fade text-center" id="modalDialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalTitle">Warning</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <span id="modalBody"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div th:replace="fragments :: footer"></div>
+
+    </div>
+
+    <!-- javascript -->
+    <script type="text/javascript">
+
+        let moduleURL = "[[@{/categories}]]";
+
+
+    </script>
+    <script th:src="@{/js/index_form.js}"></script>
+</body>
+</html>
