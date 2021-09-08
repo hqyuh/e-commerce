@@ -70,6 +70,11 @@ public class User {
                 '}';
     }
 
+    /**
+    * @Transient để thông báo rằng thuộc tính/ phương thức này
+    * không liên quan gì đến một cột nào trong database
+    * */
+
     @Transient
     public String getPhotosImagePath(){
         if(id == null || photos == null)

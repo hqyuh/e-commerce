@@ -22,6 +22,7 @@ public class CategoryService {
         return (List<Category>) repo.findAll();
     }
 
+
     public Category save(Category category){
         return repo.save(category);
     }
@@ -43,7 +44,7 @@ public class CategoryService {
                     categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
                     // list children
-                    listChildren(categoriesUsedInForm, subCategory, 1);
+                    listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
                 }
 
             }
@@ -53,7 +54,9 @@ public class CategoryService {
     }
 
     // list children
-    public void listChildren(List<Category> categoriesUsedInForm, Category parent, int subLevel){
+    public void listSubCategoriesUsedInForm(List<Category> categoriesUsedInForm,
+                                            Category parent,
+                                            int subLevel){
 
         int newSubLevel = subLevel + 1;
         Set<Category> children = parent.getChildren();
@@ -68,7 +71,7 @@ public class CategoryService {
             name += subCategory.getName();
             categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
-            listChildren(categoriesUsedInForm, subCategory, subLevel);
+            listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, newSubLevel);
         }
 
     }

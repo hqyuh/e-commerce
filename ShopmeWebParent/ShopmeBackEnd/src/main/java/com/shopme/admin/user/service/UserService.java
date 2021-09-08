@@ -17,6 +17,18 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Transaction:
+ * là 1 giao dịch (1 giao tác) bao gồm 1 loạt các hành động được phải được thực hiện thành công cùng nhau,
+ * nếu 1 hành động thất bại thì tất cả các hành động trong loạt hành động đó sẽ trở về trạng thái ban đầu.
+ *
+ * @Transactional:
+ * Spring cung cấp cơ chế hỗ trợ quản lý transaction tự động start, commit, hay rollback transaction tự động.
+ *  + Nếu đặt @Transaction ở đầu class thì tất cả các method trong class đó đều nằm trong 1 transaction,
+ *  + Nếu đặt @Transaction ở đầu method thì chỉ các method đó được nằm trong 1 transaction.
+ *
+ */
+
 @Service
 @Transactional
 public class UserService {

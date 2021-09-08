@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest(showSql = false)
@@ -96,7 +95,7 @@ class CategoryRepositoryTest {
 
     @Test
     public void testListRootCategories(){
-        List<Category> rootCategories = repo.listRootCategories();
+        List<Category> rootCategories = repo.findRootCategories();
         rootCategories.forEach(cat -> System.out.println(cat.getName()));
     }
 
