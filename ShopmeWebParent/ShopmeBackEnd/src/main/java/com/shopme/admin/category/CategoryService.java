@@ -27,23 +27,31 @@ public class CategoryService {
         return repo.save(category);
     }
 
-    // load option
+
+    // Form
+    // load option for Form
     public List<Category> listCategoriesUsedInForm(){
 
+        // list xuất trên form (option)
         List<Category> categoriesUsedInForm = new ArrayList<>();
 
         Iterable<Category> categoriesInDB = repo.findAll();
 
         for (Category category: categoriesInDB) {
             if(category.getParent() == null){
+
+                // chỉ lấy id và name cho parent-category (form)
                 categoriesUsedInForm.add(Category.copyIdAndName(category));
 
+                // lấy children cấp 1 (--)
                 Set<Category> children = category.getChildren();
                 for (Category subCategory: children) {
                     String name = "--" + subCategory.getName();
+                    // lấy id và name cho sub-category (form cần id và "--" + name của sub để chọn)
                     categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
                     // list children
+                    // lấy children cấp 2 (----)
                     listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
                 }
 
@@ -53,7 +61,7 @@ public class CategoryService {
         return categoriesUsedInForm;
     }
 
-    // list children
+    // list children for Form, cấp 2.
     public void listSubCategoriesUsedInForm(List<Category> categoriesUsedInForm,
                                             Category parent,
                                             int subLevel){
@@ -69,12 +77,14 @@ public class CategoryService {
             }
 
             name += subCategory.getName();
+            System.out.println(name);
             categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
             listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, newSubLevel);
         }
 
     }
+    // End Form
 
 
 }
