@@ -44,7 +44,7 @@ class CategoryRepositoryTest {
 
     @Test
     public void testGetCategory(){
-        Category category = repo.findById(2).get();
+        Category category = repo.findById(1).get();
         System.out.println(category.getName());
 
         Set<Category> children = category.getChildren();
@@ -75,22 +75,19 @@ class CategoryRepositoryTest {
         }
     }
 
+    /**
+     * đệ quy để lấy con
+     * */
     public void printChildren(Category parent, int subLevel){
-
         int newSubLevel = subLevel + 1;
         Set<Category> children = parent.getChildren();
 
         for (Category subCategory: children) {
-
-            for (int i = 0; i < newSubLevel; i++) {
+            for (int i = 0; i < newSubLevel; i++)
                 System.out.print("--");
-            }
-
             System.out.println(subCategory.getName());
-
             printChildren(subCategory, subLevel);
         }
-
     }
 
     @Test

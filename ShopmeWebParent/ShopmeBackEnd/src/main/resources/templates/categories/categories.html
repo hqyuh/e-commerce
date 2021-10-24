@@ -56,7 +56,9 @@
             <tbody>
                 <tr th:each="cat : ${listCategory}">
                     <td>[[${cat.id}]]</td>
-                    <td></td>
+                    <td>
+                        <img th:src="@{${cat.imagePath}}" style="width: 100px">
+                    </td>
                     <td>[[${cat.name}]]</td>
                     <td>[[${cat.alias}]]</td>
                     <td>
@@ -69,7 +71,7 @@
                     <td>
                         <!-- edit -->
                         <a class="fas fa-edit fa-2x icon-green"
-                           href=""
+                           th:href="@{'/categories/edit/' + ${cat.id}}"
                            title="">
                         </a>
                         &nbsp;

@@ -64,10 +64,11 @@
                            class="mb-2"
                            id="fileImage"
                            name="fileImage"
+                           th:required="${category.imagePath == null}"
                            accept="image/png, image/jpeg">
                     <div class="mt-2">
                         <img id="thumbnail"
-                             th:src="@{/images/image-thumbnail.png}"
+                             th:src="@{${category.imagePath}}"
                              alt="Image preview">
                     </div>
                 </div>
