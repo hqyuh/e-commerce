@@ -36,3 +36,18 @@ const showImageThumbnail = (fileInput) => {
     // read binary data and encode it as base64 data url
     reader.readAsDataURL(file);
 }
+
+/* dialog */
+const showModalDialog =(title, message) =>{
+    $("#modalTitle").text(title);
+    $("#modalBody").text(message);
+    $("#modalDialog").modal();
+}
+
+const showErrorModal = (message) => {
+    showModalDialog("Error", message);
+}
+
+const showWarningModal = (message) => {
+    showModalDialog("Warning", message);
+}

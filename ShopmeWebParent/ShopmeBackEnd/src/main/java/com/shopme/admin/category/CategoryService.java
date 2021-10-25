@@ -140,21 +140,17 @@ public class CategoryService {
         Category categoryByName = repo.findByName(name);
         Category categoryByAlias = repo.findByAlias(alias);
         if(isCreatingNew) {
-            if(categoryByName != null) {
+            if(categoryByName != null)
                 return "DuplicateName";
-            }
             else {
-                if(categoryByAlias != null) {
+                if(categoryByAlias != null)
                     return "DuplicateAlias";
-                }
             }
         } else {
-            if(categoryByName != null && categoryByName.getId() != id) {
+            if(categoryByName != null && categoryByName.getId() != id)
                 return "DuplicateName";
-            }
-            if(categoryByAlias != null && categoryByAlias.getId() != id) {
+            if(categoryByAlias != null && categoryByAlias.getId() != id)
                 return "DuplicateAlias";
-            }
         }
         return "OK";
     }
