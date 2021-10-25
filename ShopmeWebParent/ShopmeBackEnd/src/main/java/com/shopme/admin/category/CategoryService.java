@@ -130,5 +130,33 @@ public class CategoryService {
         }
     }
 
+    /*
+     * check unique name/ alias
+     *
+    * */
+    public String checkUnique(Integer id, String name, String alias) {
+        boolean isCreatingNew = (id == null || id == 0);
+        System.out.println(isCreatingNew);
+        Category categoryByName = repo.findByName(name);
+        Category categoryByAlias = repo.findByAlias(alias);
+        if(isCreatingNew) {
+            if(categoryByName != null) {
+                return "DuplicateName";
+            }
+            else {
+                if(categoryByAlias != null) {
+                    return "DuplicateAlias";
+                }
+            }
+        } else {
+            if(categoryByName != null && categoryByName.getId() != id) {
+                return "DuplicateName";
+            }
+            if(categoryByAlias != null && categoryByAlias.getId() != id) {
+                return "DuplicateAlias";
+            }
+        }
+        return "OK";
+    }
 
 }
